@@ -14,6 +14,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
+    /**
+     * Method used POST 
+     * @param username,password
+     */
     public function adminLogin(Request $r){
     	if(request()->method()=="POST"){
     		$validator = Validator::make($r->all(), [ 

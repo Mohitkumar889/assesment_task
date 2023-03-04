@@ -7,6 +7,16 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## To Run this project
+   Add .env file in root of the project
+   Run composer install
+   Run migration
+   Run DB seeder 
+   admin username :- admin
+   password :- 12345678
+   DB_DATABASE :- demo_project
+   admin login url :- http://localhost/assessment_task/admin/login
+   website url :- http://localhost/assessment_task
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:

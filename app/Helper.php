@@ -1,5 +1,6 @@
 <?php
 
+// function to upload file in storage and return file name
 function moveImage($image_name, $path){
     $i = randomImageName().'.'.$image_name->getClientOriginalExtension();
     $d = public_path($path);
@@ -9,10 +10,12 @@ function moveImage($image_name, $path){
     return $i;
 }
 
+// function to create random image name
 function randomImageName(){
     return time().randomString(2).randomString(2).randomString(2);
 }
 
+// function to generate random string
 function randomString($n) {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $randomString = '';

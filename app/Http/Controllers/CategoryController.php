@@ -9,12 +9,21 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
+    /**
+     * Method used GET 
+     * return list of Category
+     */
     public function list(Request $r){
         $categories = Category::orderByDesc('created_at')->paginate(10);
     	
     	return view('admin.category_list',compact('categories'));
     }
 
+    /**
+     * Method used GET and POST 
+     * @param category_name required
+     * Function for add and update category
+     */
     public function addUpdate(Request $r){
     	if(request()->method() == "POST"){
     		if($r->cat_id){
@@ -60,6 +69,11 @@ class CategoryController extends Controller
     	
     }
 
+    /**
+     * Method used GET 
+     * @param category id required
+     * Function for DELETE Category
+     */
     public function delete(Request $r){
         Category::where('id',$r->cat_id)->delete();
         return redirect()->back();

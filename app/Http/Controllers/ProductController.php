@@ -11,12 +11,21 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
+	/**
+     * Method used GET 
+     * return list of products
+     */
     public function list(Request $r){
     	$products = Product::with('images','category','category.addons')->orderByDesc('created_at')->paginate(10);
     	
     	return view('admin.prouduct_list',compact('products'));
     }
 
+    /**
+     * Method used GET and POST 
+     * @param category_name,product_name,quantity,price,discount,description,image  required
+     * Function for add and update Product
+     */
     public function addUpdate(Request $r){
     	if(request()->method() == "POST"){
     		if($r->p_id){
@@ -96,16 +105,29 @@ class ProductController extends Controller
         }
     }
 
+    /**
+     * Method used GET 
+     * @param product id required
+     * Function for DELETE Product
+     */
     public function delete(Request $r){
     	Addon::where('id',$r->p_id)->delete();
         return redirect()->back();
     }
 
+    /**
+     * Method used GET 
+     * Function for list product on website page
+     */
     public function webProductList(Request $r){
     	$products = Product::with('images','category','category.addons')->orderByDesc('created_at')->get();
     	return view('website.product_listing',compact('products'));
     }
 
+    /**
+     * Method used GET 
+     * Function for get product detail on website page
+     */
     public function productDetail(Request $r){
     	$product = Product::with('images','category','category.addons')->where('id',$r->p_id)->first();
     	$related_products = Product::with('images','category','category.addons')->where('category_id',$product->category_id)->where('id','<>',$product->id)->get()->take(4);
